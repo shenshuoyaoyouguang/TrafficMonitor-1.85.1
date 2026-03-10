@@ -136,12 +136,31 @@ jobs:
         $section = $lines[$start..($end - 1)]
         $section | Out-File -FilePath release_notes.md -Encoding utf8
 
+    - name: Prepare extra assets
+      shell: pwsh
+      run: |
+        $assetsRoot = "release_assets"
+        New-Item -ItemType Directory -Force -Path $assetsRoot | Out-Null
+
+        Copy-Item -Recurse -Force "TrafficMonitor/skins" (Join-Path $assetsRoot "skins")
+
+        $manifestSrc = "TrafficMonitor/TrafficMonitor.VisualElementsManifest.xml"
+        $logoSrc = "TrafficMonitor/Logo"
+        if (-not (Test-Path $manifestSrc)) { throw "Missing $manifestSrc. Please add it to the repo before releasing." }
+        if (-not (Test-Path $logoSrc)) { throw "Missing $logoSrc. Please add it to the repo before releasing." }
+
+        Copy-Item -Force $manifestSrc (Join-Path $assetsRoot "TrafficMonitor.VisualElementsManifest.xml")
+        Copy-Item -Recurse -Force $logoSrc (Join-Path $assetsRoot "Logo")
+
     - name: Package release assets
       shell: pwsh
       run: |
         $tag = "${{ github.ref_name }}"
         New-Item -ItemType Directory -Force -Path release | Out-Null
         Get-ChildItem -Path dist -Directory | Where-Object { $_.Name -like "*_TrafficMonitor" } | ForEach-Object {
+          Copy-Item -Recurse -Force "release_assets/skins" $_.FullName
+          Copy-Item -Recurse -Force "release_assets/Logo" $_.FullName
+          Copy-Item -Force "release_assets/TrafficMonitor.VisualElementsManifest.xml" $_.FullName
           $arch = $_.Name.Split('_')[0]
           $zip = Join-Path release "TrafficMonitor_${tag}_${arch}.zip"
           if (Test-Path $zip) { Remove-Item $zip -Force }
