@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "CommonData.h"
 #include "CVariant.h"
+#include <algorithm>
 #include <set>
 #include <functional>
 
@@ -281,12 +282,12 @@ public:
                 // Step 5
                 cost = (matchString.substr(j - 1, 1) == srcString.substr(i - 1, 1) ? 0 : 1);
                 // Step 6
-                d[i][j] = min(min(d[i - 1][j] + 1, d[i][j - 1] + 1), d[i - 1][j - 1] + cost);
+                d[i][j] = std::min(std::min(d[i - 1][j] + 1, d[i][j - 1] + 1), d[i - 1][j - 1] + cost);
             }
         }
 
         // Step 7
-        double ds = 1 - (double)d[n][m] / max(srcString.size(), matchString.size());
+        double ds = 1 - (double)d[n][m] / std::max(srcString.size(), matchString.size());
 
         return ds;
     }

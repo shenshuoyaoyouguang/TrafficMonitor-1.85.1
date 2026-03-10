@@ -172,7 +172,7 @@ CCpuFreq::CCpuFreq()
         NULL, 0, &ppInfo[0], sizeof(PROCESSOR_POWER_INFORMATION) * ppInfo.size());
     for (size_t i = 0; i < ppInfo.size(); i++)
     {
-        max_cpu_freq = max(max_cpu_freq, ppInfo[i].MaxMhz / 1000.f);
+        max_cpu_freq = std::max(max_cpu_freq, ppInfo[i].MaxMhz / 1000.f);
     }
 }
 

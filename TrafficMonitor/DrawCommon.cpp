@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "DrawCommon.h"
 #include "TrafficMonitor.h"
+#include <algorithm>
 
 CDrawCommon::CDrawCommon()
 {
@@ -328,10 +329,10 @@ void DrawCommonHelper::FixBitmapTextAlpha(HBITMAP hBitmap, BYTE alpha, const std
     // 遍历所有矩形区域
     for (const auto& rect : rects)
     {
-        int startX = max(0, rect.left);
-        int startY = max(0, rect.top);
-        int endX = min(width, rect.right);
-        int endY = min(height, rect.bottom);
+        int startX = std::max(0, rect.left);
+        int startY = std::max(0, rect.top);
+        int endX = std::min(width, rect.right);
+        int endY = std::min(height, rect.bottom);
 
         // 遍历当前矩形内的像素
         for (int y = startY; y < endY; ++y)

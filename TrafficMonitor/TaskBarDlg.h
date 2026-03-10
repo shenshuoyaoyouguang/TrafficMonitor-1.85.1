@@ -118,7 +118,7 @@ protected:
 
         int MaxWidth() const	//最大宽度
         {
-            return max(label_width, value_width);
+            return std::max(label_width, value_width);
         }
     };
 

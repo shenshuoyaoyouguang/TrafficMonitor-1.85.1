@@ -219,7 +219,7 @@ void CTaskBarDlg::ShowInfo(CDC* pDC)
                     //确定窗口大小
                     item_rect_up.bottom = item_rect.top - 1;
                     item_rect.bottom = m_window_height + vertical_margin;
-                    int width = max(iter->item_width.TotalWidth(), last_item_width.TotalWidth());
+                    int width = std::max(iter->item_width.TotalWidth(), last_item_width.TotalWidth());
                     item_rect.right = item_rect.left + width;
                     item_rect_up.right = item_rect_up.left + width;
                     //绘制信息
@@ -251,7 +251,7 @@ void CTaskBarDlg::ShowInfo(CDC* pDC)
             if (index > 0)
                 item_rect.MoveToXY(0, item_rect.bottom + DPI(theApp.m_taskbar_data.item_space));
             item_rect.bottom = item_rect.top + side_item_height;
-            item_rect.right = item_rect.left + min(m_window_width, m_rcMin.Width() - DPI(theApp.m_taskbar_data.item_space));
+            item_rect.right = item_rect.left + std::min(m_window_width, m_rcMin.Width() - DPI(theApp.m_taskbar_data.item_space));
             if (iter->is_plugin)
                 DrawPluginItem(draw, iter->plugin_item, item_rect, iter->item_width.label_width);
             else
@@ -1237,7 +1237,7 @@ void CTaskBarDlg::CalculateWindowSize()
                 }
                 else
                 {
-                    m_window_width += max(width0, iter->item_width.TotalWidth());
+                    m_window_width += std::max(width0, iter->item_width.TotalWidth());
                 }
                 if (item_count % 2 == 1 && index == item_count - 1) //项目数为奇数时加上最后一个的宽度
                 {
