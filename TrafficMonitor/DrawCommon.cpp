@@ -329,10 +329,10 @@ void DrawCommonHelper::FixBitmapTextAlpha(HBITMAP hBitmap, BYTE alpha, const std
     // 遍历所有矩形区域
     for (const auto& rect : rects)
     {
-        int startX = std::max(0, rect.left);
-        int startY = std::max(0, rect.top);
-        int endX = std::min(width, rect.right);
-        int endY = std::min(height, rect.bottom);
+        int startX = std::max(0, static_cast<int>(rect.left));
+        int startY = std::max(0, static_cast<int>(rect.top));
+        int endX = std::min(width, static_cast<int>(rect.right));
+        int endY = std::min(height, static_cast<int>(rect.bottom));
 
         // 遍历当前矩形内的像素
         for (int y = startY; y < endY; ++y)
