@@ -103,6 +103,58 @@ jobs:
       with:
         name: arm64EC_${{ steps.current-time.outputs.formattedTime }}_pdb
         path: Bin/ARM64EC/Release/*.pdb
+
+  release:
+    runs-on: windows-latest
+    needs: [x64_build, x86_build, arm64ec_build]
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: dist
+        pattern: "*_TrafficMonitor"
+
+    - name: Extract release notes
+      shell: pwsh
+      run: |
+        $lines = Get-Content UpdateLog/update_log.md
+        $start = -1
+        $end = $lines.Length
+        for ($i = 0; $i -lt $lines.Length; $i++) {
+          if ($lines[$i] -match '^##\s+V') { $start = $i; break }
+        }
+        if ($start -lt 0) { throw "No version section found in UpdateLog/update_log.md" }
+        for ($i = $start + 1; $i -lt $lines.Length; $i++) {
+          if ($lines[$i] -match '^##\s+V') { $end = $i; break }
+        }
+        $section = $lines[$start..($end - 1)]
+        $section | Out-File -FilePath release_notes.md -Encoding utf8
+
+    - name: Package release assets
+      shell: pwsh
+      run: |
+        $tag = "${{ github.ref_name }}"
+        New-Item -ItemType Directory -Force -Path release | Out-Null
+        Get-ChildItem -Path dist -Directory | Where-Object { $_.Name -like "*_TrafficMonitor" } | ForEach-Object {
+          $arch = $_.Name.Split('_')[0]
+          $zip = Join-Path release "TrafficMonitor_${tag}_${arch}.zip"
+          if (Test-Path $zip) { Remove-Item $zip -Force }
+          Compress-Archive -Path (Join-Path $_.FullName "*") -DestinationPath $zip
+        }
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: ${{ github.ref_name }}
+        tag_name: ${{ github.ref_name }}
+        body_path: release_notes.md
+        files: release/*.zip
   # winXP_build:
     # runs-on: windows-latest
 
