@@ -33,6 +33,13 @@
 
 #include <afxcontrolbars.h>     // 功能区和控件条的 MFC 支持
 
+#ifdef min
+#undef min
+#endif
+#ifdef max
+#undef max
+#endif
+
 #include "resource.h"
 #include <string>
 using std::string;
