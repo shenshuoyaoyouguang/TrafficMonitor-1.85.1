@@ -2040,22 +2040,6 @@
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
         </member>
-        <member name="M:Windows.Wdk.__char_32.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.__char_32.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
         <member name="M:Windows.Wdk.__char_32.ToString(System.Int32)">
             <summary>
             Copies the fixed array to a new string up to the specified length regardless of whether there are null terminating characters.
@@ -2126,59 +2110,11 @@
         <member name="P:Windows.Wdk.Graphics.Direct3D.__D3DKMT_QUERYSTATISTICS_COUNTER_5.Length">
             <summary>The length of the inline array.</summary>
         </member>
-        <member name="M:Windows.Wdk.Graphics.Direct3D.__D3DKMT_QUERYSTATISTICS_COUNTER_5.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.Graphics.Direct3D.__D3DKMT_QUERYSTATISTICS_COUNTER_5.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
         <member name="P:Windows.Wdk.Graphics.Direct3D.__D3DKMT_QUERYSTATISTICS_DMA_PACKET_TYPE_INFORMATION_4.Length">
             <summary>The length of the inline array.</summary>
         </member>
-        <member name="M:Windows.Wdk.Graphics.Direct3D.__D3DKMT_QUERYSTATISTICS_DMA_PACKET_TYPE_INFORMATION_4.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.Graphics.Direct3D.__D3DKMT_QUERYSTATISTICS_DMA_PACKET_TYPE_INFORMATION_4.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
         <member name="P:Windows.Wdk.Graphics.Direct3D.__D3DKMT_QUERYSTATISTICS_QUEUE_PACKET_TYPE_INFORMATION_8.Length">
             <summary>The length of the inline array.</summary>
-        </member>
-        <member name="M:Windows.Wdk.Graphics.Direct3D.__D3DKMT_QUERYSTATISTICS_QUEUE_PACKET_TYPE_INFORMATION_8.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.Graphics.Direct3D.__D3DKMT_QUERYSTATISTICS_QUEUE_PACKET_TYPE_INFORMATION_8.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
         </member>
         <member name="P:Windows.Wdk.Graphics.Direct3D.D3DKMT_QUERYSTATISTICS_SEGMENT_INFORMATION._PowerFlags_e__Struct.PreservedDuringStandby">
             <summary>Gets or sets bit 0 in the <see cref="F:Windows.Wdk.Graphics.Direct3D.D3DKMT_QUERYSTATISTICS_SEGMENT_INFORMATION._PowerFlags_e__Struct._bitfield" /> field.</summary>
@@ -2277,22 +2213,6 @@
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
         </member>
-        <member name="M:Windows.Wdk.__uint_16.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.__uint_16.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
         <member name="P:Windows.Wdk.__uint_3.Length">
             <summary>The length of the inline array.</summary>
         </member>
@@ -2301,22 +2221,6 @@
             Gets a ref to an individual element of the inline array.
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
-        </member>
-        <member name="M:Windows.Wdk.__uint_3.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.__uint_3.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
         </member>
         <member name="P:Windows.Wdk.__ulong_7.Length">
             <summary>The length of the inline array.</summary>
@@ -2327,22 +2231,6 @@
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
         </member>
-        <member name="M:Windows.Wdk.__ulong_7.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.__ulong_7.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
         <member name="P:Windows.Wdk.__ulong_5.Length">
             <summary>The length of the inline array.</summary>
         </member>
@@ -2351,22 +2239,6 @@
             Gets a ref to an individual element of the inline array.
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
-        </member>
-        <member name="M:Windows.Wdk.__ulong_5.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.__ulong_5.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
         </member>
         <member name="P:Windows.Wdk.__ulong_8.Length">
             <summary>The length of the inline array.</summary>
@@ -2377,22 +2249,6 @@
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
         </member>
-        <member name="M:Windows.Wdk.__ulong_8.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.__ulong_8.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
         <member name="P:Windows.Wdk.__ulong_4.Length">
             <summary>The length of the inline array.</summary>
         </member>
@@ -2402,22 +2258,6 @@
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
         </member>
-        <member name="M:Windows.Wdk.__ulong_4.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.__ulong_4.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
         <member name="P:Windows.Wdk.__ulong_9.Length">
             <summary>The length of the inline array.</summary>
         </member>
@@ -2426,22 +2266,6 @@
             Gets a ref to an individual element of the inline array.
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
-        </member>
-        <member name="M:Windows.Wdk.__ulong_9.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Wdk.__ulong_9.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
         </member>
         <member name="T:Windows.Win32.System.Power.BATTERY_INFORMATION">
             <summary>Contains battery information.</summary>
@@ -2807,22 +2631,6 @@
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
         </member>
-        <member name="M:Windows.Win32.__byte_3.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Win32.__byte_3.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
         <member name="P:Windows.Win32.__byte_4.Length">
             <summary>The length of the inline array.</summary>
         </member>
@@ -2832,22 +2640,6 @@
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
         </member>
-        <member name="M:Windows.Win32.__byte_4.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Win32.__byte_4.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
         <member name="P:Windows.Win32.__char_8.Length">
             <summary>The length of the inline array.</summary>
         </member>
@@ -2856,22 +2648,6 @@
             Gets a ref to an individual element of the inline array.
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
-        </member>
-        <member name="M:Windows.Win32.__char_8.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Win32.__char_8.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
         </member>
         <member name="M:Windows.Win32.__char_8.ToString(System.Int32)">
             <summary>
@@ -2886,61 +2662,6 @@
             Copies the fixed array to a new string, stopping before the first null terminator character or at the end of the fixed array (whichever is shorter).
             </summary>
         </member>
-        <member name="T:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA">
-            <summary>An SP_DEVICE_INTERFACE_DATA structure defines a device interface in a device information set.</summary>
-            <remarks>A SetupAPI function that takes an instance of the SP_DEVICE_INTERFACE_DATA structure as a parameter verifies whether the <b>cbSize</b> member of the supplied structure is equal to the size, in bytes, of the structure. If the <b>cbSize</b> member is not set correctly, the function will fail and set an error code of ERROR_INVALID_USER_BUFFER.</remarks>
-        </member>
-        <member name="F:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA.cbSize">
-            <summary>The size, in bytes, of the SP_DEVICE_INTERFACE_DATA structure. For more information, see the Remarks section.</summary>
-        </member>
-        <member name="F:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA.InterfaceClassGuid">
-            <summary>The GUID for the class to which the device interface belongs.</summary>
-        </member>
-        <member name="F:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA.Flags">
-            <summary>Can be one or more of the following:</summary>
-        </member>
-        <member name="F:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA.Reserved">
-            <summary>Reserved. Do not use.</summary>
-        </member>
-        <member name="T:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DETAIL_DATA_W">
-            <summary>An SP_DEVICE_INTERFACE_DETAIL_DATA structure contains the path for a device interface. (Unicode)</summary>
-            <remarks>
-            <para>An SP_DEVICE_INTERFACE_DETAIL_DATA structure identifies the path for a device interface in a device information set. <b>SetupDi</b><i>Xxx</i> functions that take an SP_DEVICE_INTERFACE_DETAIL_DATA structure as a parameter verify that the <b>cbSize</b> member of the supplied structure is equal to the size, in bytes, of the structure. If the <b>cbSize</b> member is not set correctly for an input parameter, the function will fail and set an error code of ERROR_INVALID_PARAMETER. If the <b>cbSize</b> member is not set correctly for an output parameter, the function will fail and set an error code of ERROR_INVALID_USER_BUFFER.</para>
-            <para>> [!NOTE] > The setupapi.h header defines SP_DEVICE_INTERFACE_DETAIL_DATA as an alias which automatically selects the ANSI or Unicode version of this function based on the definition of the UNICODE preprocessor constant. Mixing usage of the encoding-neutral alias with code that not encoding-neutral can lead to mismatches that result in compilation or runtime errors. For more information, see [Conventions for Function Prototypes](/windows/win32/intl/conventions-for-function-prototypes).</para>
-            <para><see href="https://learn.microsoft.com/windows/win32/api/setupapi/ns-setupapi-sp_device_interface_detail_data_w#">Read more on learn.microsoft.com</see>.</para>
-            </remarks>
-        </member>
-        <member name="F:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DETAIL_DATA_W.cbSize">
-            <summary>The size, in bytes, of the SP_DEVICE_INTERFACE_DETAIL_DATA structure. For more information, see the following Remarks section.</summary>
-        </member>
-        <member name="F:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DETAIL_DATA_W.DevicePath">
-            <summary>A NULL-terminated string that contains the device interface path. This path can be passed to Win32 functions such as <a href="https://docs.microsoft.com/windows/desktop/api/fileapi/nf-fileapi-createfilea">CreateFile</a>.</summary>
-        </member>
-        <member name="M:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DETAIL_DATA_W.SizeOf(System.Int32)">
-            <summary>Computes the amount of memory that must be allocated to store this struct, including the specified number of elements in the variable length inline array at the end.</summary>
-        </member>
-        <member name="T:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA">
-            <summary>An SP_DEVINFO_DATA structure defines a device instance that is a member of a device information set.</summary>
-            <remarks>
-            <para>An SP_DEVINFO_DATA structure identifies a device in a device information set. For example, when Windows sends a <a href="https://docs.microsoft.com/windows-hardware/drivers/install/dif-installdevice">DIF_INSTALLDEVICE</a> request to a class installer and co-installers, it includes a handle to a device information set and a pointer to an SP_DEVINFO_DATA that specifies the particular device. In addition to DIF requests, this structure is also used in some <b>SetupDi</b><i>Xxx</i> functions. <b>SetupDi</b><i>Xxx</i> functions that take an SP_DEVINFO_DATA structure as a parameter verify that the <b>cbSize</b> member of the supplied structure is equal to the size, in bytes, of the structure. If the <b>cbSize</b> member is not set correctly for an input parameter, the function will fail and set an error code of ERROR_INVALID_PARAMETER. If the <b>cbSize</b> member is not set correctly for an output parameter, the function will fail and set an error code of ERROR_INVALID_USER_BUFFER.</para>
-            <para><see href="https://learn.microsoft.com/windows/win32/api/setupapi/ns-setupapi-sp_devinfo_data#">Read more on learn.microsoft.com</see>.</para>
-            </remarks>
-        </member>
-        <member name="F:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA.cbSize">
-            <summary>The size, in bytes, of the SP_DEVINFO_DATA structure. For more information, see the following Remarks section.</summary>
-        </member>
-        <member name="F:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA.ClassGuid">
-            <summary>The GUID of the device's setup class.</summary>
-        </member>
-        <member name="F:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA.DevInst">
-            <summary>
-            <para>An opaque handle to the device instance (also known as a handle to the <a href="https://docs.microsoft.com/windows-hardware/drivers/">devnode</a>). Some functions, such as <b>SetupDi</b><i>Xxx</i> functions, take the whole SP_DEVINFO_DATA structure as input to identify a device in a device information set. Other functions, such as <b>CM</b>_<i>Xxx</i> functions like <a href="https://docs.microsoft.com/windows/desktop/api/cfgmgr32/nf-cfgmgr32-cm_get_devnode_status">CM_Get_DevNode_Status</a>, take this <b>DevInst</b> handle as input.</para>
-            <para><see href="https://learn.microsoft.com/windows/win32/api/setupapi/ns-setupapi-sp_devinfo_data#members">Read more on learn.microsoft.com</see>.</para>
-            </summary>
-        </member>
-        <member name="F:Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA.Reserved">
-            <summary>Reserved. For internal use only.</summary>
-        </member>
         <member name="T:Windows.Win32.FreeLibrarySafeHandle">
             <summary>
             Represents a Win32 handle that can be closed with <see cref="M:Windows.Win32.PInvoke.FreeLibrary(Windows.Win32.Foundation.HMODULE)"/>.
@@ -2954,22 +2675,6 @@
             Gets a ref to an individual element of the inline array.
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
-        </member>
-        <member name="M:Windows.Win32.__long_2.AsSpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
-        </member>
-        <member name="M:Windows.Win32.__long_2.AsReadOnlySpan">
-            <summary>
-            Gets this inline array as a span.
-            </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
         </member>
         <member name="T:Windows.Win32.PInvoke">
             <content>
@@ -4152,84 +3857,6 @@
             <para><see href="https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdidestroydeviceinfolist">Learn more about this API from learn.microsoft.com</see>.</para>
             </remarks>
         </member>
-        <member name="M:Windows.Win32.PInvoke.SetupDiEnumDeviceInfo(System.Runtime.InteropServices.SafeHandle,System.UInt32,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA@)">
-            <inheritdoc cref="M:Windows.Win32.PInvoke.SetupDiEnumDeviceInfo(Windows.Win32.Devices.DeviceAndDriverInstallation.HDEVINFO,System.UInt32,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA*)"/>
-        </member>
-        <member name="M:Windows.Win32.PInvoke.SetupDiEnumDeviceInfo(Windows.Win32.Devices.DeviceAndDriverInstallation.HDEVINFO,System.UInt32,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA*)">
-            <summary>The SetupDiEnumDeviceInfo function returns a SP_DEVINFO_DATA structure that specifies a device information element in a device information set.</summary>
-            <param name="DeviceInfoSet">A handle to the <a href="https://docs.microsoft.com/windows-hardware/drivers/install/device-information-sets">device information set</a> for which to return an <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/ns-setupapi-sp_devinfo_data">SP_DEVINFO_DATA</a> structure that represents a device information element.</param>
-            <param name="MemberIndex">A zero-based index of the device information element to retrieve.</param>
-            <param name="DeviceInfoData">A pointer to an <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/ns-setupapi-sp_devinfo_data">SP_DEVINFO_DATA</a> structure to receive information about an enumerated device information element. The caller must set <i>DeviceInfoData</i>.<b>cbSize</b> to <c>sizeof(SP_DEVINFO_DATA)</c>.</param>
-            <returns>The function returns <b>TRUE</b> if it is successful. Otherwise, it returns <b>FALSE</b> and the logged error can be retrieved with a call to <a href="https://docs.microsoft.com/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</a>.</returns>
-            <remarks>
-            <para>Repeated calls to this function return a device information element for a different device. This function can be called repeatedly to get information about all devices in the device information set. To enumerate device information elements, an installer should initially call <b>SetupDiEnumDeviceInfo</b> with the <i>MemberIndex</i> parameter set to 0. The installer should then increment <i>MemberIndex</i> and call <b>SetupDiEnumDeviceInfo</b> until there are no more values (the function fails and a call to <a href="https://docs.microsoft.com/windows/desktop/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</a> returns <b>ERROR_NO_MORE_ITEMS</b>). Call <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/nf-setupapi-setupdienumdeviceinterfaces">SetupDiEnumDeviceInterfaces</a> to get a context structure for a device <i>interface</i> element (versus a device <i>information</i> element).</para>
-            <para><see href="https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdienumdeviceinfo#">Read more on learn.microsoft.com</see>.</para>
-            </remarks>
-        </member>
-        <member name="M:Windows.Win32.PInvoke.SetupDiGetDeviceRegistryProperty(System.Runtime.InteropServices.SafeHandle,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA@,Windows.Win32.Devices.DeviceAndDriverInstallation.SETUP_DI_REGISTRY_PROPERTY,System.UInt32@,System.Span{System.Byte},System.UInt32@)">
-            <inheritdoc cref="M:Windows.Win32.PInvoke.SetupDiGetDeviceRegistryProperty(Windows.Win32.Devices.DeviceAndDriverInstallation.HDEVINFO,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA*,Windows.Win32.Devices.DeviceAndDriverInstallation.SETUP_DI_REGISTRY_PROPERTY,System.UInt32*,System.Byte*,System.UInt32,System.UInt32*)"/>
-        </member>
-        <member name="M:Windows.Win32.PInvoke.SetupDiGetDeviceRegistryProperty(System.Runtime.InteropServices.SafeHandle,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA@,Windows.Win32.Devices.DeviceAndDriverInstallation.SETUP_DI_REGISTRY_PROPERTY,System.Span{System.Byte})">
-            <inheritdoc cref="M:Windows.Win32.PInvoke.SetupDiGetDeviceRegistryProperty(Windows.Win32.Devices.DeviceAndDriverInstallation.HDEVINFO,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA*,Windows.Win32.Devices.DeviceAndDriverInstallation.SETUP_DI_REGISTRY_PROPERTY,System.UInt32*,System.Byte*,System.UInt32,System.UInt32*)"/>
-        </member>
-        <member name="M:Windows.Win32.PInvoke.SetupDiGetDeviceRegistryProperty(Windows.Win32.Devices.DeviceAndDriverInstallation.HDEVINFO,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA*,Windows.Win32.Devices.DeviceAndDriverInstallation.SETUP_DI_REGISTRY_PROPERTY,System.UInt32*,System.Byte*,System.UInt32,System.UInt32*)">
-            <summary>The SetupDiGetDeviceRegistryProperty function retrieves a specified Plug and Play device property. (Unicode)</summary>
-            <param name="DeviceInfoSet">A handle to a <a href="https://docs.microsoft.com/windows-hardware/drivers/install/device-information-sets">device information set</a> that contains a device information element that represents the device for which to retrieve a Plug and Play property.</param>
-            <param name="DeviceInfoData">A pointer to an <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/ns-setupapi-sp_devinfo_data">SP_DEVINFO_DATA</a> structure that specifies the device information element in <i>DeviceInfoSet</i>.</param>
-            <param name="Property"></param>
-            <param name="PropertyRegDataType">A pointer to a variable that receives the data type of the property that is being retrieved. This is one of the standard registry data types. This parameter is optional and can be <b>NULL</b>.</param>
-            <param name="PropertyBuffer">A pointer to a buffer that receives the property that is being retrieved. If this parameter is set to <b>NULL</b>, and <i>PropertyBufferSize</i> is also set to zero, the function returns the required size for the buffer in <i>RequiredSize</i>.</param>
-            <param name="PropertyBufferSize">The size, in bytes, of the <i>PropertyBuffer </i> buffer.</param>
-            <param name="RequiredSize">A pointer to a variable of type DWORD that receives the required size, in bytes, of the <i>PropertyBuffer</i> buffer that is required to hold the data for the requested property. This parameter is optional and can be <b>NULL</b>.</param>
-            <returns><b>SetupDiGetDeviceRegistryProperty</b> returns <b>TRUE</b> if the call was successful. Otherwise, it returns <b>FALSE</b> and the logged error can be retrieved by making a call to <a href="https://docs.microsoft.com/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</a>. <b>SetupDiGetDeviceRegistryProperty</b> returns the ERROR_INVALID_DATA error code if the requested property does not exist for a device or if the property data is not valid.</returns>
-            <remarks>
-            <para>> [!NOTE] > The setupapi.h header defines SetupDiGetDeviceRegistryProperty as an alias which automatically selects the ANSI or Unicode version of this function based on the definition of the UNICODE preprocessor constant. Mixing usage of the encoding-neutral alias with code that not encoding-neutral can lead to mismatches that result in compilation or runtime errors. For more information, see [Conventions for Function Prototypes](/windows/win32/intl/conventions-for-function-prototypes).</para>
-            <para><see href="https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdigetdeviceregistrypropertyw#">Read more on learn.microsoft.com</see>.</para>
-            </remarks>
-        </member>
-        <member name="M:Windows.Win32.PInvoke.SetupDiGetDeviceInterfaceDetail(System.Runtime.InteropServices.SafeHandle,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA@,System.Span{System.Byte},System.UInt32@,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA@)">
-            <inheritdoc cref="M:Windows.Win32.PInvoke.SetupDiGetDeviceInterfaceDetail(Windows.Win32.Devices.DeviceAndDriverInstallation.HDEVINFO,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA*,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DETAIL_DATA_W*,System.UInt32,System.UInt32*,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA*)"/>
-        </member>
-        <member name="M:Windows.Win32.PInvoke.SetupDiGetDeviceInterfaceDetail(System.Runtime.InteropServices.SafeHandle,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA@,System.Span{System.Byte})">
-            <inheritdoc cref="M:Windows.Win32.PInvoke.SetupDiGetDeviceInterfaceDetail(Windows.Win32.Devices.DeviceAndDriverInstallation.HDEVINFO,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA*,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DETAIL_DATA_W*,System.UInt32,System.UInt32*,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA*)"/>
-        </member>
-        <member name="M:Windows.Win32.PInvoke.SetupDiGetDeviceInterfaceDetail(Windows.Win32.Devices.DeviceAndDriverInstallation.HDEVINFO,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA*,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DETAIL_DATA_W*,System.UInt32,System.UInt32*,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA*)">
-            <summary>The SetupDiGetDeviceInterfaceDetail function returns details about a device interface. (Unicode)</summary>
-            <param name="DeviceInfoSet">A pointer to the <a href="https://docs.microsoft.com/windows-hardware/drivers/install/device-information-sets">device information set</a> that contains the interface for which to retrieve details. This handle is typically returned by <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/nf-setupapi-setupdigetclassdevsw">SetupDiGetClassDevs</a>.</param>
-            <param name="DeviceInterfaceData">A pointer to an <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/ns-setupapi-sp_device_interface_data">SP_DEVICE_INTERFACE_DATA</a> structure that specifies the interface in <i>DeviceInfoSet</i> for which to retrieve details. A pointer of this type is typically returned by <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/nf-setupapi-setupdienumdeviceinterfaces">SetupDiEnumDeviceInterfaces</a>.</param>
-            <param name="DeviceInterfaceDetailData">A pointer to an <a href="https://docs.microsoft.com/windows/win32/api/setupapi/ns-setupapi-sp_device_interface_detail_data_a">SP_DEVICE_INTERFACE_DETAIL_DATA</a> structure to receive information about the specified interface. This parameter is optional and can be <b>NULL</b>. This parameter must be <b>NULL</b> if <i>DeviceInterfaceDetailSize</i> is zero. If this parameter is specified, the caller must set <i>DeviceInterfaceDetailData</i><b>.cbSize</b> to <b>sizeof</b>(SP_DEVICE_INTERFACE_DETAIL_DATA) before calling this function. The <b>cbSize</b> member always contains the size of the fixed part of the data structure, not a size reflecting the variable-length string at the end.</param>
-            <param name="DeviceInterfaceDetailDataSize">
-            <para>The size of the <i>DeviceInterfaceDetailData</i> buffer. The buffer must be at least (<b>offsetof</b>(SP_DEVICE_INTERFACE_DETAIL_DATA, <b>DevicePath</b>) + <b>sizeof</b>(TCHAR)) bytes, to contain the fixed part of the structure and a single <b>NULL</b> to terminate an empty MULTI_SZ string. This parameter must be zero if <i>DeviceInterfaceDetailData</i> is <b>NULL</b>.</para>
-            <para><see href="https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdigetdeviceinterfacedetailw#parameters">Read more on learn.microsoft.com</see>.</para>
-            </param>
-            <param name="RequiredSize">A pointer to a variable of type DWORD that receives the required size of the <i>DeviceInterfaceDetailData</i> buffer. This size includes the size of the fixed part of the structure plus the number of bytes required for the variable-length device path string. This parameter is optional and can be <b>NULL</b>.</param>
-            <param name="DeviceInfoData">A pointer to a buffer that receives information about the device that supports the requested interface. The caller must set <i>DeviceInfoData</i><b>.cbSize</b> to <b>sizeof</b>(SP_DEVINFO_DATA). This parameter is optional and can be <b>NULL</b>.</param>
-            <returns><b>SetupDiGetDeviceInterfaceDetail</b> returns <b>TRUE</b> if the function completed without error. If the function completed with an error, <b>FALSE</b> is returned and the error code for the failure can be retrieved by calling <a href="https://docs.microsoft.com/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</a>.</returns>
-            <remarks>
-            <para>Using this function to get details about an interface is typically a two-step process: </para>
-            <para>This doc was truncated.</para>
-            <para><see href="https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdigetdeviceinterfacedetailw#">Read more on learn.microsoft.com</see>.</para>
-            </remarks>
-        </member>
-        <member name="M:Windows.Win32.PInvoke.SetupDiEnumDeviceInterfaces(System.Runtime.InteropServices.SafeHandle,System.Nullable{Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA},System.Guid@,System.UInt32,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA@)">
-            <inheritdoc cref="M:Windows.Win32.PInvoke.SetupDiEnumDeviceInterfaces(Windows.Win32.Devices.DeviceAndDriverInstallation.HDEVINFO,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA*,System.Guid*,System.UInt32,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA*)"/>
-        </member>
-        <member name="M:Windows.Win32.PInvoke.SetupDiEnumDeviceInterfaces(Windows.Win32.Devices.DeviceAndDriverInstallation.HDEVINFO,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVINFO_DATA*,System.Guid*,System.UInt32,Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DATA*)">
-            <summary>The SetupDiEnumDeviceInterfaces function enumerates the device interfaces that are contained in a device information set.</summary>
-            <param name="DeviceInfoSet">A pointer to a <a href="https://docs.microsoft.com/windows-hardware/drivers/install/device-information-sets">device information set</a> that contains the device interfaces for which to return information. This handle is typically returned by <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/nf-setupapi-setupdigetclassdevsw">SetupDiGetClassDevs</a>.</param>
-            <param name="DeviceInfoData">A pointer to an <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/ns-setupapi-sp_devinfo_data">SP_DEVINFO_DATA</a> structure that specifies a device information element in <i>DeviceInfoSet</i>. This parameter is optional and can be <b>NULL</b>. If this parameter is specified, <b>SetupDiEnumDeviceInterfaces</b> constrains the enumeration to the interfaces that are supported by the specified device. If this parameter is <b>NULL</b>, repeated calls to <b>SetupDiEnumDeviceInterfaces</b> return information about the interfaces that are associated with all the device information elements in <i>DeviceInfoSet</i>. This pointer is typically returned by <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/nf-setupapi-setupdienumdeviceinfo">SetupDiEnumDeviceInfo</a>.</param>
-            <param name="InterfaceClassGuid">A pointer to a GUID that specifies the device interface class for the requested interface.</param>
-            <param name="MemberIndex">
-            <para>A zero-based index into the list of interfaces in the device information set. The caller should call this function first with <i>MemberIndex</i> set to zero to obtain the first interface. Then, repeatedly increment <i>MemberIndex</i> and retrieve an interface until this function fails and <a href="https://docs.microsoft.com/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</a> returns ERROR_NO_MORE_ITEMS. If <i>DeviceInfoData</i> specifies a particular device, the <i>MemberIndex</i> is relative to only the interfaces exposed by that device.</para>
-            <para><see href="https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdienumdeviceinterfaces#parameters">Read more on learn.microsoft.com</see>.</para>
-            </param>
-            <param name="DeviceInterfaceData">A pointer to a caller-allocated buffer that contains, on successful return, a completed <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/ns-setupapi-sp_device_interface_data">SP_DEVICE_INTERFACE_DATA</a> structure that identifies an interface that meets the search parameters. The caller must set <i>DeviceInterfaceData</i>.<b>cbSize</b> to <b>sizeof</b>(SP_DEVICE_INTERFACE_DATA) before calling this function.</param>
-            <returns><b>SetupDiEnumDeviceInterfaces</b> returns <b>TRUE</b> if the function completed without error. If the function completed with an error, <b>FALSE</b> is returned and the error code for the failure can be retrieved by calling <a href="https://docs.microsoft.com/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</a>.</returns>
-            <remarks>
-            <para>Repeated calls to this function return an <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/ns-setupapi-sp_device_interface_data">SP_DEVICE_INTERFACE_DATA</a> structure for a different device interface. This function can be called repeatedly to get information about interfaces in a device information set that are associated with a particular device information element or that are associated with all device information elements. <i>DeviceInterfaceData</i> points to a structure that identifies a requested device interface. To get detailed information about an interface, call <a href="https://docs.microsoft.com/windows/desktop/api/setupapi/nf-setupapi-setupdigetdeviceinterfacedetaila">SetupDiGetDeviceInterfaceDetail</a>. The detailed information includes the name of the device interface that can be passed to a Win32 function such as <a href="https://docs.microsoft.com/windows/desktop/api/fileapi/nf-fileapi-createfilea">CreateFile</a> (described in Microsoft Windows SDK documentation) to get a handle to the interface. See <a href="https://docs.microsoft.com/windows-hardware/drivers/install/overview-of-device-interface-classes">Overview of Device Interface Classes</a> for more info.</para>
-            <para><see href="https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdienumdeviceinterfaces#">Read more on learn.microsoft.com</see>.</para>
-            </remarks>
-        </member>
         <member name="M:Windows.Win32.PInvoke.SetupDiGetClassDevs(System.Nullable{System.Guid},System.String,Windows.Win32.Foundation.HWND,Windows.Win32.Devices.DeviceAndDriverInstallation.SETUP_DI_GET_CLASS_DEVS_FLAGS)">
             <inheritdoc cref="M:Windows.Win32.PInvoke.SetupDiGetClassDevs(System.Guid*,Windows.Win32.Foundation.PCWSTR,Windows.Win32.Foundation.HWND,Windows.Win32.Devices.DeviceAndDriverInstallation.SETUP_DI_GET_CLASS_DEVS_FLAGS)"/>
         </member>
@@ -4280,21 +3907,22 @@
             ⚠ Important ⚠: When this struct is on the stack, do not let the returned reference outlive the stack frame that defines it.
             </summary>
         </member>
-        <member name="M:Windows.Win32.__ushort_3.AsSpan">
+        <member name="T:System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute">
             <summary>
-            Gets this inline array as a span.
+            Specifies the priority of a member in overload resolution.
+            When unspecified, the default priority is 0.
             </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
         </member>
-        <member name="M:Windows.Win32.__ushort_3.AsReadOnlySpan">
+        <member name="M:System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute.#ctor(System.Int32)">
             <summary>
-            Gets this inline array as a span.
+            Initializes a new instance of the <see cref="T:System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute"/> class.
             </summary>
-            <remarks>
-            ⚠ Important ⚠: When this struct is on the stack, do not let the returned span outlive the stack frame that defines it.
-            </remarks>
+            <param name="priority">The priority of the attributed member. Higher numbers are prioritized, lower numbers are deprioritized. 0 is the default if no attribute is present.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute.Priority">
+            <summary>
+            The priority of the member.
+            </summary>
         </member>
     </members>
 </doc>
