@@ -1439,6 +1439,22 @@ void CD2D1BitmapCache::AddHBitmap(HBITMAP hbitmap, CacheInitializer initializer)
     {
         return;
     }
+    (void)GetOrCreateBitmapLocked(hbitmap, std::move(initializer));
+}
+
+auto CD2D1BitmapCache::GetOrCreateBitmapLocked(HBITMAP hbitmap, CacheInitializer initializer)
+    -> ComPtr<ID2D1Bitmap>
+{
+    auto it = m_sp_data->m_cache_map.find(hbitmap);
+    if (it != m_sp_data->m_cache_map.end())
+    {
+        if (m_sp_data->IsCacheExpire(it->second))
+        {
+            it->second.Update(m_p_render_target, it->first);
+        }
+        return it->second.m_cache;
+    }
+
     try
     {
         auto p_d2d1_bitmap = initializer(m_p_render_target, hbitmap);
@@ -1446,10 +1462,12 @@ void CD2D1BitmapCache::AddHBitmap(HBITMAP hbitmap, CacheInitializer initializer)
             p_d2d1_bitmap,
             std::chrono::steady_clock::now(),
             initializer};
+        return p_d2d1_bitmap;
     }
     catch (CWICException& ex)
     {
         LogHResultException(ex);
+        return {};
     }
 }
 
@@ -1541,20 +1559,7 @@ auto CD2D1BitmapCache::GetCachedBitmap(HBITMAP hbitmap)
     -> ComPtr<ID2D1Bitmap>
 {
     TRAFFICMONITOR_CD2D1BITMAPCACHE_LOCK_CACHE_MAP_AND_EXPIRE_INTERVAL(m_sp_data);
-    auto it = m_sp_data->m_cache_map.find(hbitmap);
-    if (it != m_sp_data->m_cache_map.end())
-    {
-        if (m_sp_data->IsCacheExpire(it->second))
-        {
-            it->second.Update(m_p_render_target, it->first);
-        }
-        return it->second.m_cache;
-    }
-    else
-    {
-        AddHBitmap(hbitmap);
-        return m_sp_data->m_cache_map[hbitmap].m_cache;
-    }
+    return GetOrCreateBitmapLocked(hbitmap, CD2D1BitmapCache::CreateD2D1BitmapFromHBitmap);
 }
 
 bool CD2D1BitmapCache::IsHBitmapExist(HBITMAP hbitmap) const
@@ -1562,9 +1567,9 @@ bool CD2D1BitmapCache::IsHBitmapExist(HBITMAP hbitmap) const
     auto existing_it = m_sp_data->m_cache_map.find(hbitmap);
     if (existing_it == m_sp_data->m_cache_map.end())
     {
-        return true;
+        return false;
     }
-    return false;
+    return true;
 }
 
 void CD2D1BitmapCache::GCImpl(std::shared_ptr<HeapData> sp_data)

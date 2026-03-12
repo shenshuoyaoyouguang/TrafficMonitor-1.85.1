@@ -17,6 +17,61 @@ CPluginManager::CPluginManager()
 {
 }
 
+namespace
+{
+    constexpr int MAX_MONITOR_CALLBACK_FAILURE_COUNT{ 3 };
+
+    bool InvokePluginDataRequired(ITMPlugin* plugin) noexcept
+    {
+        __try
+        {
+            try
+            {
+                plugin->DataRequired();
+                return true;
+            }
+            catch (...)
+            {
+                return false;
+            }
+        }
+        __except (EXCEPTION_EXECUTE_HANDLER)
+        {
+            return false;
+        }
+    }
+
+    bool InvokePluginMonitorInfo(ITMPlugin* plugin, const ITMPlugin::MonitorInfo& monitor_info) noexcept
+    {
+        __try
+        {
+            try
+            {
+                plugin->OnMonitorInfo(monitor_info);
+                return true;
+            }
+            catch (...)
+            {
+                return false;
+            }
+        }
+        __except (EXCEPTION_EXECUTE_HANDLER)
+        {
+            return false;
+        }
+    }
+
+    std::wstring GetPluginDisplayName(const CPluginManager::PluginInfo& plugin_info)
+    {
+        auto plugin_name = plugin_info.Property(ITMPlugin::TMI_NAME);
+        if (!plugin_name.empty())
+        {
+            return plugin_name;
+        }
+        return plugin_info.file_path;
+    }
+}
+
 CPluginManager::~CPluginManager()
 {
     //卸载插件
@@ -223,6 +278,45 @@ int CPluginManager::GetItemWidth(IPluginItem* pItem, CDC* pDC)
         width = theApp.DPI(pItem->GetItemWidth());
     }
     return width;
+}
+
+void CPluginManager::DispatchMonitorInfo(const ITMPlugin::MonitorInfo& monitor_info)
+{
+    for (auto& plugin_info : m_modules)
+    {
+        if (plugin_info.plugin == nullptr || plugin_info.monitor_callback_suppressed)
+        {
+            continue;
+        }
+
+        bool success = InvokePluginDataRequired(plugin_info.plugin);
+        if (success)
+        {
+            success = InvokePluginMonitorInfo(plugin_info.plugin, monitor_info);
+        }
+
+        if (success)
+        {
+            plugin_info.monitor_callback_failure_count = 0;
+            continue;
+        }
+
+        plugin_info.monitor_callback_failure_count++;
+        if (plugin_info.monitor_callback_failure_count >= MAX_MONITOR_CALLBACK_FAILURE_COUNT)
+        {
+            plugin_info.monitor_callback_suppressed = true;
+        }
+
+        std::wstring log_text{ L"Plugin monitor callback failed: " };
+        log_text += GetPluginDisplayName(plugin_info);
+        log_text += L", consecutive_failures=";
+        log_text += std::to_wstring(plugin_info.monitor_callback_failure_count);
+        if (plugin_info.monitor_callback_suppressed)
+        {
+            log_text += L", suppressed=true";
+        }
+        CCommon::WriteLog(log_text.c_str(), theApp.m_log_path.c_str());
+    }
 }
 
 std::wstring CPluginManager::PluginInfo::Property(ITMPlugin::PluginInfoIndex index) const

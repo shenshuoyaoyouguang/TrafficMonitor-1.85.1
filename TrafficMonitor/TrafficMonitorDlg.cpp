@@ -788,10 +788,9 @@ void CTrafficMonitorDlg::ApplySettings(COptionsDlg& optionsDlg)
         //如果关闭了硬件监控，则析构硬件监控类
         if (theApp.m_general_data.hardware_monitor_item == 0)
         {
-            CSingleLock sync(&theApp.m_minitor_lib_critical, TRUE);
-            theApp.m_pMonitor.reset();
+            theApp.ResetOpenHardwareMonitor();
         }
-        else if (theApp.m_pMonitor != nullptr)
+        else if (theApp.GetOpenHardwareMonitor() != nullptr)
         {
             theApp.UpdateOpenHardwareMonitorEnableState();
         }
@@ -1125,7 +1124,7 @@ BOOL CTrafficMonitorDlg::OnInitDialog()
     SetTimer(MAIN_TIMER, 1000, NULL);
 
     SetTimer(MONITOR_TIMER, theApp.m_general_data.monitor_time_span, NULL);
-    AfxBeginThread(MonitorThreadCallback, (LPVOID)this);
+    StartMonitorThread();
 
     //初始化窗口位置
     SetItemPosition();
@@ -1391,15 +1390,14 @@ void CTrafficMonitorDlg::DoMonitorAcquisition()
 
 #ifndef WITHOUT_TEMPERATURE
     //获取温度
-    if (IsTemperatureNeeded() && theApp.m_pMonitor != nullptr)
+    auto monitor = IsTemperatureNeeded() ? theApp.GetOpenHardwareMonitor() : nullptr;
+    if (monitor != nullptr)
     {
-        CSingleLock sync(&theApp.m_minitor_lib_critical, TRUE);
-
-        auto getHardwareInfo = []()
+        auto getHardwareInfo = [monitor]()
             {
                 __try
                 {
-                    theApp.m_pMonitor->GetHardwareInfo();
+                    monitor->GetHardwareInfo();
                 }
                 __except (EXCEPTION_EXECUTE_HANDLER)
                 {
@@ -1413,28 +1411,33 @@ void CTrafficMonitorDlg::DoMonitorAcquisition()
         {
             AfxMessageBox(monitor_error_message.c_str(), MB_ICONERROR | MB_OK);
         }
-        //theApp.m_cpu_temperature = theApp.m_pMonitor->CpuTemperature();
-        theApp.m_gpu_temperature = theApp.m_pMonitor->GpuTemperature();
-        //theApp.m_hdd_temperature = theApp.m_pMonitor->HDDTemperature();
-        theApp.m_main_board_temperature = theApp.m_pMonitor->MainboardTemperature();
-        theApp.m_gpu_usage = theApp.m_pMonitor->GpuUsage();
+        //theApp.m_cpu_temperature = monitor->CpuTemperature();
+        theApp.m_gpu_temperature = monitor->GpuTemperature();
+        //theApp.m_hdd_temperature = monitor->HDDTemperature();
+        theApp.m_main_board_temperature = monitor->MainboardTemperature();
+        theApp.m_gpu_usage = monitor->GpuUsage();
         if (!cpu_freq_acquired)
-            theApp.m_cpu_freq = theApp.m_pMonitor->CpuFreq();
+            theApp.m_cpu_freq = monitor->CpuFreq();
         if (!cpu_usage_acquired)
-            theApp.m_cpu_usage = theApp.m_pMonitor->CpuUsage();
+            theApp.m_cpu_usage = monitor->CpuUsage();
+
+        const auto& all_cpu_temperature = monitor->AllCpuTemperature();
+        const auto& all_hdd_temperature = monitor->AllHDDTemperature();
+        const auto& all_hdd_usage = monitor->AllHDDUsage();
+
         //获取CPU温度
-        if (!theApp.m_pMonitor->AllCpuTemperature().empty())
+        if (!all_cpu_temperature.empty())
         {
             if (theApp.m_general_data.cpu_core_name == CCommon::LoadText(IDS_AVREAGE_TEMPERATURE).GetString())  //如果选择了平均温度
             {
-                theApp.m_cpu_temperature = theApp.m_pMonitor->CpuTemperature();
+                theApp.m_cpu_temperature = monitor->CpuTemperature();
             }
             else
             {
-                auto iter = theApp.m_pMonitor->AllCpuTemperature().find(theApp.m_general_data.cpu_core_name);
-                if (iter == theApp.m_pMonitor->AllCpuTemperature().end())
+                auto iter = all_cpu_temperature.find(theApp.m_general_data.cpu_core_name);
+                if (iter == all_cpu_temperature.end())
                 {
-                    iter = theApp.m_pMonitor->AllCpuTemperature().begin();
+                    iter = all_cpu_temperature.begin();
                     theApp.m_general_data.cpu_core_name = iter->first;
                 }
                 theApp.m_cpu_temperature = iter->second;
@@ -1445,12 +1448,12 @@ void CTrafficMonitorDlg::DoMonitorAcquisition()
             theApp.m_cpu_temperature = -1;
         }
         //获取硬盘温度
-        if (!theApp.m_pMonitor->AllHDDTemperature().empty())
+        if (!all_hdd_temperature.empty())
         {
-            auto iter = theApp.m_pMonitor->AllHDDTemperature().find(theApp.m_general_data.hard_disk_name);
-            if (iter == theApp.m_pMonitor->AllHDDTemperature().end())
+            auto iter = all_hdd_temperature.find(theApp.m_general_data.hard_disk_name);
+            if (iter == all_hdd_temperature.end())
             {
-                iter = theApp.m_pMonitor->AllHDDTemperature().begin();
+                iter = all_hdd_temperature.begin();
                 theApp.m_general_data.hard_disk_name = iter->first;
             }
             theApp.m_hdd_temperature = iter->second;
@@ -1460,12 +1463,12 @@ void CTrafficMonitorDlg::DoMonitorAcquisition()
             theApp.m_hdd_temperature = -1;
         }
         //获取硬盘利用率
-        if (!theApp.m_pMonitor->AllHDDUsage().empty())
+        if (!all_hdd_usage.empty())
         {
-            auto iter = theApp.m_pMonitor->AllHDDUsage().find(theApp.m_general_data.hard_disk_name);
-            if (iter == theApp.m_pMonitor->AllHDDUsage().end())
+            auto iter = all_hdd_usage.find(theApp.m_general_data.hard_disk_name);
+            if (iter == all_hdd_usage.end())
             {
-                iter = theApp.m_pMonitor->AllHDDUsage().begin();
+                iter = all_hdd_usage.begin();
                 theApp.m_general_data.hard_disk_name = iter->first;
             }
             theApp.m_hdd_usage = iter->second;
@@ -1486,72 +1489,90 @@ void CTrafficMonitorDlg::DoMonitorAcquisition()
     }
 #endif
 
-    //通知插件获取数据，以及向插件传递监控数据
-    for (const auto& plugin_info : theApp.m_plugins.GetPlugins())
-    {
-        if (plugin_info.plugin != nullptr)
-        {
-            plugin_info.plugin->DataRequired();
-            ITMPlugin::MonitorInfo monitor_info;
-            monitor_info.up_speed = theApp.m_out_speed;
-            monitor_info.down_speed = theApp.m_in_speed;
-            monitor_info.cpu_usage = theApp.m_cpu_usage;
-            monitor_info.memory_usage = theApp.m_memory_usage;
-            monitor_info.gpu_usage = theApp.m_gpu_usage;
-            monitor_info.hdd_usage = theApp.m_hdd_usage;
-            monitor_info.cpu_temperature = theApp.m_cpu_temperature;
-            monitor_info.gpu_temperature = theApp.m_gpu_temperature;
-            monitor_info.hdd_temperature = theApp.m_hdd_temperature;
-            monitor_info.cpu_freq = theApp.m_cpu_freq;
-            monitor_info.main_board_temperature = theApp.m_main_board_temperature;
-            plugin_info.plugin->OnMonitorInfo(monitor_info);
-        }
-    }
+    ITMPlugin::MonitorInfo monitor_info;
+    monitor_info.up_speed = theApp.m_out_speed;
+    monitor_info.down_speed = theApp.m_in_speed;
+    monitor_info.cpu_usage = theApp.m_cpu_usage;
+    monitor_info.memory_usage = theApp.m_memory_usage;
+    monitor_info.gpu_usage = theApp.m_gpu_usage;
+    monitor_info.hdd_usage = theApp.m_hdd_usage;
+    monitor_info.cpu_temperature = theApp.m_cpu_temperature;
+    monitor_info.gpu_temperature = theApp.m_gpu_temperature;
+    monitor_info.hdd_temperature = theApp.m_hdd_temperature;
+    monitor_info.cpu_freq = theApp.m_cpu_freq;
+    monitor_info.main_board_temperature = theApp.m_main_board_temperature;
+    theApp.m_plugins.DispatchMonitorInfo(monitor_info);
 
     m_monitor_time_cnt++;
 
     //发送监控信息更新消息
     theApp.UpdateMonitorDataSnapshot();
-    SendMessage(WM_MONITOR_INFO_UPDATED);
+    if (!m_monitor_update_message_pending.exchange(true))
+    {
+        const HWND h_wnd = GetSafeHwnd();
+        if (h_wnd == NULL || !::PostMessage(h_wnd, WM_MONITOR_INFO_UPDATED, 0, 0))
+        {
+            m_monitor_update_message_pending.store(false);
+        }
+    }
+}
+
+bool CTrafficMonitorDlg::StartMonitorThread()
+{
+    if (m_pMonitorThread != nullptr)
+    {
+        return true;
+    }
+
+    m_monitor_update_message_pending.store(false);
+    m_monitor_exit_event.ResetEvent();
+    m_monitor_request_event.ResetEvent();
+    m_pMonitorThread = AfxBeginThread(MonitorThreadCallback, (LPVOID)this);
+    if (m_pMonitorThread != nullptr)
+    {
+        m_pMonitorThread->m_bAutoDelete = FALSE;
+        return true;
+    }
+    return false;
 }
 
 UINT CTrafficMonitorDlg::MonitorThreadCallback(LPVOID dwUser)
 {
     CTrafficMonitorDlg* pThis = (CTrafficMonitorDlg*)dwUser;
+    HANDLE wait_handles[2]{ pThis->m_monitor_exit_event.m_hObject, pThis->m_monitor_request_event.m_hObject };
     while (true)
     {
-        //获取一次监控数据
-        if (pThis->m_monitor_data_required.load())
+        const DWORD wait_result = ::WaitForMultipleObjects(_countof(wait_handles), wait_handles, FALSE, INFINITE);
+        if (wait_result == WAIT_OBJECT_0)
         {
-            pThis->DoMonitorAcquisition();
-            //获取到监控数据后重置flag
-            pThis->m_monitor_data_required.store(false);
-        }
-        else
-        {
-            Sleep(10);
-        }
-
-        // 检查退出标志
-        if (pThis->m_is_thread_exit.load())
-        {
-            // 触发事件，通知主线程工作线程已退出
-            pThis->m_threadExitEvent.SetEvent();
             return 0;
         }
+        if (wait_result == WAIT_OBJECT_0 + 1)
+        {
+            pThis->DoMonitorAcquisition();
+            continue;
+        }
+        return 0;
     }
-
-    return 0;
 }
 
 
 void CTrafficMonitorDlg::ExitMonitorThread()
 {
-    // 通知线程退出
-    m_is_thread_exit.store(true);
+    KillTimer(MONITOR_TIMER);
+    if (m_pMonitorThread == nullptr)
+    {
+        return;
+    }
 
-    // 等待线程退出
-    ::WaitForSingleObject(m_threadExitEvent.m_hObject, 1000);
+    m_monitor_exit_event.SetEvent();
+    m_monitor_request_event.SetEvent();
+    ::WaitForSingleObject(m_pMonitorThread->m_hThread, INFINITE);
+    delete m_pMonitorThread;
+    m_pMonitorThread = nullptr;
+    m_monitor_update_message_pending.store(false);
+    m_monitor_request_event.ResetEvent();
+    m_monitor_exit_event.ResetEvent();
 }
 
 
@@ -1561,7 +1582,8 @@ void CTrafficMonitorDlg::OnTimer(UINT_PTR nIDEvent)
     if (nIDEvent == MONITOR_TIMER)
     {
         //通知线程获取监控数据
-        m_monitor_data_required.store(true);
+        if (m_pMonitorThread != nullptr)
+            m_monitor_request_event.SetEvent();
     }
 
     if (nIDEvent == MAIN_TIMER)
@@ -2088,6 +2110,7 @@ void CTrafficMonitorDlg::OnTransparency40()
 void CTrafficMonitorDlg::OnClose()
 {
     // TODO: 在此添加消息处理程序代码和/或调用默认值
+    ExitMonitorThread();
     theApp.m_cannot_save_config_warning = true;
     theApp.m_cannot_save_global_config_warning = true;
     theApp.SaveConfig();    //退出前保存设置到ini文件
@@ -2368,13 +2391,11 @@ void CTrafficMonitorDlg::OnShowNotifyIcon()
 
 void CTrafficMonitorDlg::OnDestroy()
 {
+    ExitMonitorThread();
     CDialog::OnDestroy();
 
     //程序退出时删除通知栏图标
     ::Shell_NotifyIcon(NIM_DELETE, &m_ntIcon);
-
-    // 停止监控线程
-    ExitMonitorThread();
 }
 
 
@@ -2704,6 +2725,7 @@ BOOL CTrafficMonitorDlg::OnQueryEndSession()
         return FALSE;
 
     // TODO:  在此添加专用的查询结束会话代码
+    ExitMonitorThread();
     theApp.SaveConfig();
     theApp.SaveGlobalConfig();
     SaveHistoryTraffic();
@@ -2771,6 +2793,7 @@ afx_msg LRESULT CTrafficMonitorDlg::OnTaskbarWndClosed(WPARAM wParam, LPARAM lPa
 
 afx_msg LRESULT CTrafficMonitorDlg::OnMonitorInfoUpdated(WPARAM wParam, LPARAM lParam)
 {
+    m_monitor_update_message_pending.store(false);
     Invalidate(FALSE);      //刷新窗口信息
 
     //更新鼠标提示

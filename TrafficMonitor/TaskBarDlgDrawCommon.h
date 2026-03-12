@@ -744,6 +744,8 @@ public:
         -> Microsoft::WRL::ComPtr<ID2D1Bitmap>;
 
 private:
+    auto GetOrCreateBitmapLocked(HBITMAP hbitmap, CacheInitializer initializer)
+        -> Microsoft::WRL::ComPtr<ID2D1Bitmap>;
     /**
      * @brief 检查BITMAP是否已经缓存 ！！此函数不加锁！！
      *

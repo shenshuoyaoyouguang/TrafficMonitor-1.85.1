@@ -29,6 +29,8 @@ public:
         std::vector<IPluginItem*> plugin_items; //插件提供的所有显示项目
         PluginState state{};    //插件的状态
         DWORD error_code{};     //错误代码（GetLastError的返回值）
+        int monitor_callback_failure_count{};   //监控回调连续失败次数
+        bool monitor_callback_suppressed{};     //监控回调是否已被降级停用
         std::map<ITMPlugin::PluginInfoIndex, std::wstring> properties;    //插件属性
         std::wstring Property(ITMPlugin::PluginInfoIndex) const;
     };
@@ -56,6 +58,7 @@ public:
     const std::set<CommonDisplayItem>& AllDisplayItemsWithPlugins();
 
     int GetItemWidth(IPluginItem* pItem, CDC* pDC);
+    void DispatchMonitorInfo(const ITMPlugin::MonitorInfo& monitor_info);
 
 private:
     static void ReplacePluginDrawTextFunction(HMODULE plgin_dll_module) noexcept;

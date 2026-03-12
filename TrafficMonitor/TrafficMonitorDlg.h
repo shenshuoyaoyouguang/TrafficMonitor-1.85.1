@@ -121,10 +121,12 @@ protected:
     string m_connection_name_preferd{ theApp.m_cfg_data.m_connection_name };          //保存用户手动选择的网络连接名称
 
     void DoMonitorAcquisition();    //获取一次监控信息
+    bool StartMonitorThread();
     static UINT MonitorThreadCallback(LPVOID dwUser);   //获取监控信息的线程函数
-    std::atomic_bool m_monitor_data_required{ false };          //线程中需要获取监控数据标志，当需要获取监控数据时置为true，获取到一次监控数据时置为false
-    std::atomic_bool m_is_thread_exit{ false }; //线程退出标志
-    CEvent m_threadExitEvent;       //用于通知主线程工作线程已退出
+    std::atomic_bool m_monitor_update_message_pending{ false };
+    CWinThread* m_pMonitorThread{};
+    CEvent m_monitor_request_event{ FALSE, FALSE };
+    CEvent m_monitor_exit_event{ FALSE, TRUE };
 public:
     void ExitMonitorThread();       //停止监控线程
 

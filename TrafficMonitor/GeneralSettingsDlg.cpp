@@ -297,17 +297,17 @@ BOOL CGeneralSettingsDlg::OnInitDialog()
     CheckDlgButton(IDC_HDD_CHECK, m_data.IsHardwareEnable(HI_HDD));
     CheckDlgButton(IDC_MBD_CHECK, m_data.IsHardwareEnable(HI_MBD));
 
-    if (theApp.m_pMonitor != nullptr)
+    auto monitor = theApp.GetOpenHardwareMonitor();
+    if (monitor != nullptr)
     {
-        CSingleLock sync(&theApp.m_minitor_lib_critical, TRUE);
         //初始化选择硬盘下拉列表
-        for (const auto& hdd_item : theApp.m_pMonitor->AllHDDTemperature())
+        for (const auto& hdd_item : monitor->AllHDDTemperature())
             m_hard_disk_combo.AddString(hdd_item.first.c_str());
         int cur_index = m_hard_disk_combo.FindString(-1, m_data.hard_disk_name.c_str());
         m_hard_disk_combo.SetCurSel(cur_index);
         //初始化选择CPU下拉列表
         m_select_cpu_combo.AddString(CCommon::LoadText(IDS_AVREAGE_TEMPERATURE));
-        for (const auto& cpu_item : theApp.m_pMonitor->AllCpuTemperature())
+        for (const auto& cpu_item : monitor->AllCpuTemperature())
             m_select_cpu_combo.AddString(cpu_item.first.c_str());
         cur_index = m_select_cpu_combo.FindString(-1, m_data.cpu_core_name.c_str());
         if (cur_index < 0)

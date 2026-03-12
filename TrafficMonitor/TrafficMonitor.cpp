@@ -708,9 +708,16 @@ UINT CTrafficMonitorApp::CheckUpdateThreadFunc(LPVOID lpParam)
 UINT CTrafficMonitorApp::InitOpenHardwareMonitorLibThreadFunc(LPVOID lpParam)
 {
 #ifndef WITHOUT_TEMPERATURE
-    CSingleLock sync(&theApp.m_minitor_lib_critical, TRUE);
-    theApp.m_pMonitor = OpenHardwareMonitorApi::CreateInstance();
-    if (theApp.m_pMonitor == nullptr)
+    std::shared_ptr<OpenHardwareMonitorApi::IOpenHardwareMonitor> monitor;
+    {
+        CSingleLock sync(&theApp.m_minitor_lib_critical, TRUE);
+        if (theApp.m_pMonitor == nullptr)
+        {
+            theApp.m_pMonitor = OpenHardwareMonitorApi::CreateInstance();
+        }
+        monitor = theApp.m_pMonitor;
+    }
+    if (monitor == nullptr)
     {
         AfxMessageBox(OpenHardwareMonitorApi::GetErrorMessage().c_str(), MB_ICONERROR | MB_OK);
     }
@@ -1224,16 +1231,30 @@ void CTrafficMonitorApp::InitOpenHardwareLibInThread()
 void CTrafficMonitorApp::UpdateOpenHardwareMonitorEnableState()
 {
 #ifndef WITHOUT_TEMPERATURE
-    if (m_pMonitor != nullptr)
+    auto monitor = GetOpenHardwareMonitor();
+    if (monitor != nullptr)
     {
-        CSingleLock sync(&theApp.m_minitor_lib_critical, TRUE);
-        m_pMonitor->SetCpuEnable(m_general_data.IsHardwareEnable(HI_CPU));
-        m_pMonitor->SetGpuEnable(m_general_data.IsHardwareEnable(HI_GPU));
-        m_pMonitor->SetHddEnable(m_general_data.IsHardwareEnable(HI_HDD));
-        m_pMonitor->SetMainboardEnable(m_general_data.IsHardwareEnable(HI_MBD));
+        monitor->SetCpuEnable(m_general_data.IsHardwareEnable(HI_CPU));
+        monitor->SetGpuEnable(m_general_data.IsHardwareEnable(HI_GPU));
+        monitor->SetHddEnable(m_general_data.IsHardwareEnable(HI_HDD));
+        monitor->SetMainboardEnable(m_general_data.IsHardwareEnable(HI_MBD));
     }
 #endif
 }
+
+#ifndef WITHOUT_TEMPERATURE
+std::shared_ptr<OpenHardwareMonitorApi::IOpenHardwareMonitor> CTrafficMonitorApp::GetOpenHardwareMonitor()
+{
+    CSingleLock sync(&m_minitor_lib_critical, TRUE);
+    return m_pMonitor;
+}
+
+void CTrafficMonitorApp::ResetOpenHardwareMonitor()
+{
+    CSingleLock sync(&m_minitor_lib_critical, TRUE);
+    m_pMonitor.reset();
+}
+#endif
 
 //void CTrafficMonitorApp::UpdateTaskbarWndMenu()
 //{

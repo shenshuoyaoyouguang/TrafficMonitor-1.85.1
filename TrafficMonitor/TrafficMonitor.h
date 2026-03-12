@@ -117,11 +117,12 @@ public:
     CMenu m_taskbar_menu_plugin_sub_menu;
 
 #ifndef WITHOUT_TEMPERATURE
-    //OpenHardwareMonitor 接口的指针
+private:
     std::shared_ptr<OpenHardwareMonitorApi::IOpenHardwareMonitor> m_pMonitor{};
+    CCriticalSection m_minitor_lib_critical;        //用于访问OpenHardwareMonitor进行线程同步的临界区对象
+public:
 #endif // !WITHOUT_TEMPERATURE
 
-    CCriticalSection m_minitor_lib_critical;        //用于访问OpenHardwareMonitor进行线程同步的临界区对象
     //CCriticalSection m_lftable_critical;            //用于访问LfTable2进行线程同步的临界区对象
     CCriticalSection m_monitor_data_critical;        //用于监控数据快照的线程同步
     CLazyConstructable<class CTaskBarDlgDrawCommonSupport> m_d2d_taskbar_draw_common_support{}; // 当使用D2D渲染时自动初始化的全局依赖
@@ -169,6 +170,10 @@ public:
 
     void InitOpenHardwareLibInThread();     //开启一个后台线程初始化OpenHardwareMonitor
     void UpdateOpenHardwareMonitorEnableState();    //更新硬件监控的启用/禁用状态
+#ifndef WITHOUT_TEMPERATURE
+    std::shared_ptr<OpenHardwareMonitorApi::IOpenHardwareMonitor> GetOpenHardwareMonitor();
+    void ResetOpenHardwareMonitor();
+#endif
 
     //void UpdateTaskbarWndMenu();      //更新任务栏窗口右键菜单
     bool IsForceShowNotifyIcon();       //是否需要强制显示通知区图标
